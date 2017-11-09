@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="./static/css/layui.css"  media="all">
+</head>
+<body>
+
+<table class="layui-table" lay-data="{height:'728', url:'info.php',page:true,limit:20}" id="itemContainer" >
+  <thead >
+    <tr>
+      <th lay-data="{field:'id', width:80, sort: true}">ID</th>
+      <th lay-data="{field:'date', width:180, sort: true, templet: '#sexTpl'}">日期</th>
+      <th lay-data="{field:'name', width:180}">姓名</th>
+      <th lay-data="{field:'idcard', width:280}">身份证号码</th>
+      <th lay-data="{field:'link', width:360}">目录地址</th>
+      <th lay-data="{field:'link', width:160, templet: '#usernameTpl'}">复制目录地址</th>
+      <th lay-data="{field:'id', width:160, templet: '#showPic',event: 'setPic',}">目录图片</th>
+    </tr>
+  </thead>
+</table>
+<div class="holder holder-lx1" style="text-align: center;"></div>
+<script type="text/html" id="usernameTpl">
+  <input type="text" id="url{{d.id}}"  value="{{d.link}}" readonly="" style="border: none;width: 0.1px"/>
+  <input type="button" value="点击复制" onClick="url{{d.id}}.select();document.execCommand('Copy');layer.msg('目录复制成功')" class="layui-btn layui-btn-mini">
+</script>
+<script type="text/html" id="showPic">
+  <input type="button" value="点击查看" class="layui-btn layui-btn-mini" onClick="layer.open({type: 2,title: '目录图片',shadeClose: true,shade: 0.8,area: ['480px', '90%'],content: 'pic.php?link={{d.piclink}}'})">
+</script>
+ <script src="./static/layui.js" charset="utf-8"></script>
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+
+});
+</script>
+</body>
+</html>
